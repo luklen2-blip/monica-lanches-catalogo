@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Mônica Lanches - Cardápio & Delivery</title>
+  <meta name="description" content="Peça picolés, sacolé raiz, salgados fritos, hambúrgueres e bebidas geladas na Mônica Lanches pelo WhatsApp!">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍔</text></svg>">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- QRCode.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+    body {
+      font-family: 'Poppins', sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .hide-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .hide-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    .bounce-tap:active {
+      transform: scale(0.95);
+    }
+  </style>
+</head>
+<body class="bg-amber-50 text-slate-800 antialiased pb-24">
+
+  <!-- TOPO / CABEÇALHO DA MARCA -->
+  <header class="sticky top-0 z-40 bg-red-700 text-white shadow-md">
+    <div class="max-w-md mx-auto px-4 py-3 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 rounded-full bg-amber-400 text-red-900 flex items-center justify-center font-bold text-xl shadow-inner">
+          M
+        </div>
+        <div>
+          <h1 class="text-lg font-extrabold leading-tight tracking-wide">MÔNICA LANCHES</h1>
+          <p class="text-xs text-amber-200 font-medium">Lanches, Salgados, Picolés & Sacolé</p>
+        </div>
+      </div>
+      
+      <!-- Botão do Carrinho no Topo -->
+      <button onclick="abrirCarrinho()" class="relative p-2 rounded-full bg-red-800 hover:bg-red-900 transition bounce-tap">
+        <i data-lucide="shopping-cart" class="w-6 h-6 text-amber-300"></i>
+        <span id="badge-topo" class="hidden absolute -top-1 -right-1 bg-amber-400 text-red-900 text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center border-2 border-red-700 shadow">
+          0
+        </span>
+      </button>
+    </div>
+  </header>
+
+  <main class="max-w-md mx-auto">
+    <!-- BANNER PROMOCIONAL / DESTAQUE -->
+    <section class="relative bg-gradient-to-b from-red-700 to-amber-600 text-white px-4 pt-2 pb-6 rounded-b-3xl shadow-lg">
+      <div class="relative overflow-hidden rounded-2xl shadow-xl border-2 border-amber-300/40 bg-slate-900">
+        <img src="assets/monica_trailer_completo.jpg" alt="Mônica Lanches Trailer" class="w-full h-44 object-cover object-center opacity-90">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-3">
+          <span class="inline-block bg-amber-400 text-red-950 font-bold text-[11px] px-2.5 py-0.5 rounded-full w-max shadow">
+            🔥 Peça pelo WhatsApp
+          </span>
+          <h2 class="text-base font-extrabold text-white mt-1">Sabor caseiro, crocante e geladinho!</h2>
+          <p class="text-xs text-amber-200">Entregamos no conforto da sua casa ou retire no trailer.</p>
+        </div>
+      </div>
+
+      <!-- 4 SELOS DE CONFIANÇA (IDÊNTICO AO VÍDEO) -->
+      <div class="grid grid-cols-4 gap-2 mt-4 text-center">
+        <div class="bg-white/10 backdrop-blur-sm p-2 rounded-xl border border-white/10">
+          <div class="text-lg">🛵</div>
+          <span class="text-[10px] font-semibold block leading-tight text-amber-100 mt-1">Entrega Rápida</span>
+        </div>
+        <div class="bg-white/10 backdrop-blur-sm p-2 rounded-xl border border-white/10">
+          <div class="text-lg">⭐</div>
+          <span class="text-[10px] font-semibold block leading-tight text-amber-100 mt-1">Qualidade Caseira</span>
+        </div>
+        <div class="bg-white/10 backdrop-blur-sm p-2 rounded-xl border border-white/10">
+          <div class="text-lg">💳</div>
+          <span class="text-[10px] font-semibold block leading-tight text-amber-100 mt-1">PIX & Dinheiro</span>
+        </div>
+        <div class="bg-white/10 backdrop-blur-sm p-2 rounded-xl border border-white/10">
+          <div class="text-lg">😋</div>
+          <span class="text-[10px] font-semibold block leading-tight text-amber-100 mt-1">Preço Justo</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- BARRA FIXA DE CATEGORIAS -->
+    <section class="sticky top-[58px] z-30 bg-amber-50/95 backdrop-blur-md py-3 px-4 border-b border-amber-200 shadow-sm">
+      <div id="categorias-container" class="flex space-x-2 overflow-x-auto hide-scrollbar pb-1">
+        <!-- Renderizado dinamicamente via JS -->
+      </div>
+    </section>
+
+    <!-- LISTA DE PRODUTOS (GRID 2 COLUNAS IDÊNTICO AO VÍDEO) -->
+    <section id="vitrine-produtos" class="px-3 pt-3 space-y-6">
+      <!-- Inserido dinamicamente via JS -->
+    </section>
+  </main>
+
+  <!-- BOTÃO FLUTUANTE DE WHATSAPP / PEDIR AGORA (QUANDO HOUVER ITENS) -->
+  <div id="barra-flutuante" class="hidden fixed bottom-20 left-0 right-0 z-40 max-w-md mx-auto px-4">
+    <button onclick="abrirCarrinho()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold py-3.5 px-5 rounded-2xl shadow-2xl flex items-center justify-between border-2 border-emerald-400 bounce-tap transition">
+      <div class="flex items-center space-x-2">
+        <i data-lucide="message-circle" class="w-6 h-6"></i>
+        <span>Ver Carrinho (<span id="flutuante-qtd">0</span>)</span>
+      </div>
+      <div class="text-amber-200 font-bold text-base" id="flutuante-total">
+        R$ 0,00
+      </div>
+    </button>
+  </div>
+
+  <!-- NAVEGAÇÃO INFERIOR FIXA (BOTTOM NAV BAR) -->
+  <nav class="fixed bottom-0 left-0 right-0 z-30 bg-white border-t border-slate-200 shadow-2xl py-2">
+    <div class="max-w-md mx-auto grid grid-cols-4 text-center text-xs">
+      <button onclick="irParaSecao('picoles')" class="flex flex-col items-center text-red-700 font-bold bounce-tap">
+        <i data-lucide="home" class="w-5 h-5 mb-0.5"></i>
+        <span>Início</span>
+      </button>
+      <button onclick="irParaSecao('vitrine-produtos')" class="flex flex-col items-center text-slate-500 hover:text-red-700 font-medium bounce-tap">
+        <i data-lucide="utensils" class="w-5 h-5 mb-0.5"></i>
+        <span>Cardápio</span>
+      </button>
+      <button onclick="abrirCarrinho()" class="relative flex flex-col items-center text-slate-500 hover:text-red-700 font-medium bounce-tap">
+        <i data-lucide="shopping-bag" class="w-5 h-5 mb-0.5"></i>
+        <span>Carrinho</span>
+        <span id="badge-nav" class="hidden absolute top-0 right-6 bg-red-600 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
+          0
+        </span>
+      </button>
+      <a href="https://wa.me/55997119170?text=Ol%C3%A1%20M%C3%B4nica%2C%20gostaria%20de%20tirar%20uma%20d%C3%BAvida!" target="_blank" class="flex flex-col items-center text-emerald-600 hover:text-emerald-700 font-medium bounce-tap">
+        <i data-lucide="phone" class="w-5 h-5 mb-0.5"></i>
+        <span>WhatsApp</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- MODAL DE CHECKOUT & CARRINHO -->
+  <div id="modal-carrinho" class="hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex justify-center items-end sm:items-center p-0 sm:p-4">
+    <div class="bg-white w-full max-w-md max-h-[92vh] rounded-t-3xl sm:rounded-3xl flex flex-col overflow-hidden shadow-2xl animate-in slide-in-from-bottom">
+      
+      <!-- Cabeçalho do Carrinho -->
+      <div class="bg-red-700 text-white p-4 flex items-center justify-between">
+        <div class="flex items-center space-x-2">
+          <i data-lucide="shopping-bag" class="w-6 h-6 text-amber-300"></i>
+          <h3 class="font-bold text-lg">Seu Pedido</h3>
+        </div>
+        <button onclick="fecharCarrinho()" class="p-1 rounded-full hover:bg-red-800 transition">
+          <i data-lucide="x" class="w-6 h-6"></i>
+        </button>
+      </div>
+
+      <!-- Conteúdo do Carrinho (Scrollável) -->
+      <div class="p-4 overflow-y-auto space-y-4 flex-1">
+        
+        <!-- Lista de Itens -->
+        <div id="carrinho-itens" class="space-y-3">
+          <!-- Inserido dinamicamente -->
+        </div>
+
+        <!-- Opção de Entrega -->
+        <div class="bg-slate-50 p-3.5 rounded-2xl border border-slate-200">
+          <label class="block text-xs font-bold text-slate-700 mb-2 uppercase tracking-wider">Forma de Recebimento</label>
+          <div class="grid grid-cols-2 gap-2">
+            <button type="button" id="btn-delivery" onclick="setEntrega('delivery')" class="py-2.5 px-3 rounded-xl border-2 border-red-600 bg-red-50 text-red-700 font-bold text-xs flex items-center justify-center space-x-1.5 transition">
+              <i data-lucide="bike" class="w-4 h-4"></i>
+              <span>Entrega (+R$ 5)</span>
+            </button>
+            <button type="button" id="btn-retirada" onclick="setEntrega('retirada')" class="py-2.5 px-3 rounded-xl border border-slate-300 bg-white text-slate-700 font-bold text-xs flex items-center justify-center space-x-1.5 transition">
+              <i data-lucide="store" class="w-4 h-4"></i>
+              <span>Retirar no Trailer</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Dados do Cliente -->
+        <div class="space-y-2.5">
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">Seu Nome *</label>
+            <input type="text" id="cli-nome" placeholder="Ex: Lucas Silva" class="w-full text-sm px-3 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-red-600 outline-none">
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">Seu Telefone / WhatsApp *</label>
+            <input type="tel" id="cli-tel" placeholder="Ex: (99) 99999-9999" class="w-full text-sm px-3 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-red-600 outline-none">
+          </div>
+          <div id="box-endereco">
+            <label class="block text-xs font-bold text-slate-700 mb-1">Endereço de Entrega (Rua, Nº, Bairro) *</label>
+            <input type="text" id="cli-end" placeholder="Ex: Rua das Flores, 120 - Centro" class="w-full text-sm px-3 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-red-600 outline-none">
+          </div>
+        </div>
+
+        <!-- Forma de Pagamento -->
+        <div class="bg-amber-50 p-3.5 rounded-2xl border border-amber-200">
+          <label class="block text-xs font-bold text-amber-900 mb-2 uppercase tracking-wider">Forma de Pagamento</label>
+          <div class="grid grid-cols-3 gap-2">
+            <button type="button" id="pag-pix" onclick="setPagamento('PIX')" class="p-2 rounded-xl border-2 border-emerald-600 bg-emerald-50 text-emerald-800 font-bold text-xs flex flex-col items-center justify-center space-y-1">
+              <span class="text-sm">💠</span>
+              <span>PIX</span>
+            </button>
+            <button type="button" id="pag-dinheiro" onclick="setPagamento('Dinheiro')" class="p-2 rounded-xl border border-slate-300 bg-white text-slate-700 font-bold text-xs flex flex-col items-center justify-center space-y-1">
+              <span class="text-sm">💵</span>
+              <span>Dinheiro</span>
+            </button>
+            <button type="button" id="pag-cartao" onclick="setPagamento('Cartão')" class="p-2 rounded-xl border border-slate-300 bg-white text-slate-700 font-bold text-xs flex flex-col items-center justify-center space-y-1">
+              <span class="text-sm">💳</span>
+              <span>Cartão</span>
+            </button>
+          </div>
+
+          <!-- Troco para dinheiro -->
+          <div id="box-troco" class="hidden mt-2.5">
+            <label class="block text-[11px] font-bold text-slate-600 mb-1">Precisa de troco para quanto?</label>
+            <input type="text" id="cli-troco" placeholder="Ex: Troco para R$ 50,00" class="w-full text-xs px-3 py-2 rounded-lg border border-slate-300 outline-none">
+          </div>
+
+          <!-- Área do PIX Dinâmico -->
+          <div id="box-pix" class="mt-3 bg-white p-3 rounded-xl border border-emerald-300 text-center">
+            <p class="text-xs font-bold text-emerald-800">Chave PIX: 99711-9170</p>
+            <p class="text-[11px] text-slate-500 mb-2">Favorecido: Mônica Lanches</p>
+            <div id="qrcode-pix" class="flex justify-center my-2"></div>
+            <button type="button" onclick="copiarPix()" class="w-full bg-emerald-100 hover:bg-emerald-200 text-emerald-900 text-xs font-bold py-1.5 px-3 rounded-lg border border-emerald-400 flex items-center justify-center space-x-1">
+              <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+              <span id="btn-pix-txt">Copiar Código PIX Copia-e-Cola</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Resumo Financeiro -->
+        <div class="border-t border-slate-200 pt-3 space-y-1.5 text-xs text-slate-600">
+          <div class="flex justify-between">
+            <span>Subtotal dos itens:</span>
+            <span id="resumo-subtotal" class="font-semibold text-slate-800">R$ 0,00</span>
+          </div>
+          <div class="flex justify-between">
+            <span>Taxa de Entrega:</span>
+            <span id="resumo-taxa" class="font-semibold text-slate-800">R$ 5,00</span>
+          </div>
+          <div class="flex justify-between text-base font-extrabold text-red-700 pt-1 border-t border-dashed border-slate-300">
+            <span>Total Geral:</span>
+            <span id="resumo-total">R$ 5,00</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Rodapé do Carrinho com Ação -->
+      <div class="p-4 bg-slate-50 border-t border-slate-200">
+        <button onclick="finalizarPedidoWhatsApp()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold py-3.5 px-4 rounded-2xl shadow-xl flex items-center justify-center space-x-2 bounce-tap transition">
+          <i data-lucide="send" class="w-5 h-5"></i>
+          <span>FINALIZAR PELO WHATSAPP</span>
+        </button>
+        <p class="text-[10px] text-center text-slate-400 mt-2">Você será redirecionado para enviar o pedido direto no WhatsApp da Mônica.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SCRIPT DA APLICAÇÃO -->
+  <script>
+    let cardapio = null;
+    let carrinho = {};
+    let modalidadeEntrega = 'delivery';
+    let formaPagamento = 'PIX';
+    let pixPayloadAtual = '';
+
+    // Inicialização
+    async function carregarCardapio() {
+      try {
+        const res = await fetch('/api/cardapio');
+        cardapio = await res.json();
+        renderizarCategorias();
+        renderizarProdutos();
+        lucide.createIcons();
+      } catch (err) {
+        console.error('Erro ao carregar cardapio:', err);
+      }
+    }
+
+    function renderizarCategorias() {
+      const container = document.getElementById('categorias-container');
+      container.innerHTML = cardapio.categorias.map((cat, i) => `
+        <button onclick="irParaSecao('${cat.id}')" class="whitespace-nowrap px-4 py-1.5 rounded-full text-xs font-bold transition shadow-sm ${i === 0 ? 'bg-red-700 text-white' : 'bg-white text-slate-700 border border-slate-300 hover:bg-amber-100'}">
+          ${cat.nome}
+        </button>
+      `).join('');
+    }
+
+    function renderizarProdutos() {
+      const container = document.getElementById('vitrine-produtos');
+      container.innerHTML = cardapio.categorias.map(cat => `
+        <div id="sec-${cat.id}" class="space-y-3">
+          <div class="flex items-center justify-between border-b border-amber-300/60 pb-1.5">
+            <h3 class="font-extrabold text-slate-800 text-base">${cat.nome}</h3>
+            <span class="text-xs font-semibold text-red-700 bg-red-100 px-2 py-0.5 rounded-full">${cat.destaque || ''}</span>
+          </div>
+
+          <!-- GRID DUPLO IDÊNTICO AO VÍDEO -->
+          <div class="grid grid-cols-2 gap-2.5">
+            ${cat.itens.map(item => `
+              <div class="bg-white rounded-2xl p-2.5 shadow-sm border border-amber-200/70 flex flex-col justify-between hover:shadow-md transition">
+                <div class="relative">
+                  <img src="${item.foto || 'assets/monica_trailer_completo.jpg'}" alt="${item.nome}" class="w-full h-28 object-cover rounded-xl bg-amber-100" loading="lazy" onerror="this.src='assets/monica_trailer_completo.jpg'">
+                  ${item.badge ? `<span class="absolute top-1.5 left-1.5 bg-red-600 text-white text-[9px] font-extrabold px-1.5 py-0.5 rounded-md shadow">${item.badge}</span>` : ''}
+                  <button onclick="toggleFavorito(this)" class="absolute top-1.5 right-1.5 w-6 h-6 rounded-full bg-white/80 backdrop-blur-sm flex items-center justify-center text-slate-400 hover:text-red-600 transition">
+                    ♥
+                  </button>
+                </div>
+
+                <div class="mt-2 flex-1 flex flex-col justify-between">
+                  <div>
+                    <h4 class="font-bold text-xs text-slate-900 leading-snug line-clamp-1">${item.nome}</h4>
+                    <p class="text-[10px] text-slate-500 line-clamp-2 mt-0.5">${item.descricao || ''}</p>
+                  </div>
+
+                  <div class="mt-2 pt-2 border-t border-slate-100 flex items-center justify-between">
+                    <span class="text-xs font-extrabold text-red-700">R$ ${item.preco.toFixed(2).replace('.', ',')}</span>
+                    <button onclick="adicionarAoCarrinho('${item.id}', '${item.nome}', ${item.preco})" class="bg-emerald-600 hover:bg-emerald-700 active:scale-90 text-white text-[11px] font-bold px-2.5 py-1.5 rounded-lg flex items-center space-x-1 shadow transition">
+                      <span>+</span>
+                      <span>Pedir</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function toggleFavorito(btn) {
+      if (btn.classList.contains('text-red-600')) {
+        btn.classList.remove('text-red-600');
+        btn.classList.add('text-slate-400');
+      } else {
+        btn.classList.remove('text-slate-400');
+        btn.classList.add('text-red-600');
+      }
+    }
+
+    function adicionarAoCarrinho(id, nome, preco) {
+      if (!carrinho[id]) {
+        carrinho[id] = { id, nome, preco, qtd: 0 };
+      }
+      carrinho[id].qtd += 1;
+      atualizarInterfaceCarrinho();
+    }
+
+    function alterarQtd(id, delta) {
+      if (!carrinho[id]) return;
+      carrinho[id].qtd += delta;
+      if (carrinho[id].qtd <= 0) {
+        delete carrinho[id];
+      }
+      atualizarInterfaceCarrinho();
+    }
+
+    function atualizarInterfaceCarrinho() {
+      let totalQtd = 0;
+      let totalValor = 0;
+
+      for (const k in carrinho) {
+        totalQtd += carrinho[k].qtd;
+        totalValor += carrinho[k].preco * carrinho[k].qtd;
+      }
+
+      // Badges
+      const badgeTopo = document.getElementById('badge-topo');
+      const badgeNav = document.getElementById('badge-nav');
+      if (totalQtd > 0) {
+        badgeTopo.innerText = totalQtd;
+        badgeTopo.classList.remove('hidden');
+        badgeNav.innerText = totalQtd;
+        badgeNav.classList.remove('hidden');
+      } else {
+        badgeTopo.classList.add('hidden');
+        badgeNav.classList.add('hidden');
+      }
+
+      // Barra Flutuante
+      const barraFlutuante = document.getElementById('barra-flutuante');
+      if (totalQtd > 0) {
+        barraFlutuante.classList.remove('hidden');
+        document.getElementById('flutuante-qtd').innerText = totalQtd;
+        document.getElementById('flutuante-total').innerText = 'R$ ' + totalValor.toFixed(2).replace('.', ',');
+      } else {
+        barraFlutuante.classList.add('hidden');
+      }
+
+      renderizarListaCarrinho();
+    }
+
+    function renderizarListaCarrinho() {
+      const container = document.getElementById('carrinho-itens');
+      const itensKeys = Object.keys(carrinho);
+
+      if (itensKeys.length === 0) {
+        container.innerHTML = `
+          <div class="text-center py-8 text-slate-400">
+            <i data-lucide="shopping-bag" class="w-12 h-12 mx-auto mb-2 opacity-50"></i>
+            <p class="text-sm">Seu carrinho está vazio.</p>
+            <p class="text-xs mt-1 text-slate-400">Adicione alguns picolés ou lanches gostosos!</p>
+          </div>
+        `;
+        lucide.createIcons();
+        atualizarTotais(0);
+        return;
+      }
+
+      let subtotal = 0;
+      container.innerHTML = itensKeys.map(k => {
+        const item = carrinho[k];
+        const itemSubtotal = item.preco * item.qtd;
+        subtotal += itemSubtotal;
+        return `
+          <div class="flex items-center justify-between p-2.5 bg-slate-50 rounded-xl border border-slate-200 text-xs">
+            <div class="flex-1 mr-2">
+              <h5 class="font-bold text-slate-800">${item.nome}</h5>
+              <span class="text-slate-500">R$ ${item.preco.toFixed(2).replace('.', ',')} un.</span>
+            </div>
+            <div class="flex items-center space-x-2">
+              <div class="flex items-center border border-slate-300 rounded-lg bg-white overflow-hidden">
+                <button onclick="alterarQtd('${item.id}', -1)" class="px-2 py-1 text-slate-600 hover:bg-slate-100 font-bold">-</button>
+                <span class="px-2.5 font-bold text-slate-800">${item.qtd}</span>
+                <button onclick="alterarQtd('${item.id}', 1)" class="px-2 py-1 text-slate-600 hover:bg-slate-100 font-bold">+</button>
+              </div>
+              <span class="font-extrabold text-slate-900 w-16 text-right">R$ ${itemSubtotal.toFixed(2).replace('.', ',')}</span>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      atualizarTotais(subtotal);
+      lucide.createIcons();
+    }
+
+    function atualizarTotais(subtotal) {
+      const taxa = modalidadeEntrega === 'delivery' ? 5.00 : 0.00;
+      const total = subtotal + taxa;
+
+      document.getElementById('resumo-subtotal').innerText = 'R$ ' + subtotal.toFixed(2).replace('.', ',');
+      document.getElementById('resumo-taxa').innerText = 'R$ ' + taxa.toFixed(2).replace('.', ',');
+      document.getElementById('resumo-total').innerText = 'R$ ' + total.toFixed(2).replace('.', ',');
+
+      if (formaPagamento === 'PIX' && total > 0) {
+        gerarPixInstantaneo(total);
+      }
+    }
+
+    function setEntrega(tipo) {
+      modalidadeEntrega = tipo;
+      const btnDel = document.getElementById('btn-delivery');
+      const btnRet = document.getElementById('btn-retirada');
+      const boxEnd = document.getElementById('box-endereco');
+
+      if (tipo === 'delivery') {
+        btnDel.className = "py-2.5 px-3 rounded-xl border-2 border-red-600 bg-red-50 text-red-700 font-bold text-xs flex items-center justify-center space-x-1.5 transition";
+        btnRet.className = "py-2.5 px-3 rounded-xl border border-slate-300 bg-white text-slate-700 font-bold text-xs flex items-center justify-center space-x-1.5 transition";
+        boxEnd.classList.remove('hidden');
+      } else {
+        btnRet.className = "py-2.5 px-3 rounded-xl border-2 border-red-600 bg-red-50 text-red-700 font-bold text-xs flex items-center justify-center space-x-1.5 transition";
+        btnDel.className = "py-2.5 px-3 rounded-xl border border-slate-300 bg-white text-slate-700 font-bold text-xs flex items-center justify-center space-x-1.5 transition";
+        boxEnd.classList.add('hidden');
+      }
+
+      atualizarInterfaceCarrinho();
+    }
+
+    function setPagamento(forma) {
+      formaPagamento = forma;
+      const btns = { 'PIX': 'pag-pix', 'Dinheiro': 'pag-dinheiro', 'Cartão': 'pag-cartao' };
+      for (const f in btns) {
+        const el = document.getElementById(btns[f]);
+        if (f === forma) {
+          el.className = "p-2 rounded-xl border-2 border-emerald-600 bg-emerald-50 text-emerald-800 font-bold text-xs flex flex-col items-center justify-center space-y-1";
+        } else {
+          el.className = "p-2 rounded-xl border border-slate-300 bg-white text-slate-700 font-bold text-xs flex flex-col items-center justify-center space-y-1";
+        }
+      }
+
+      document.getElementById('box-troco').classList.toggle('hidden', forma !== 'Dinheiro');
+      document.getElementById('box-pix').classList.toggle('hidden', forma !== 'PIX');
+
+      atualizarInterfaceCarrinho();
+    }
+
+    async function gerarPixInstantaneo(valor) {
+      try {
+        const res = await fetch('/api/pix', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ valor })
+        });
+        const data = await res.json();
+        if (data.ok && data.payload) {
+          pixPayloadAtual = data.payload;
+          const qrDiv = document.getElementById('qrcode-pix');
+          qrDiv.innerHTML = '';
+          new QRCode(qrDiv, {
+            text: data.payload,
+            width: 130,
+            height: 130,
+            colorDark: "#065f46",
+            colorLight: "#ffffff",
+            correctLevel: QRCode.CorrectLevel.M
+          });
+        }
+      } catch (err) {
+        console.error('Erro ao gerar PIX:', err);
+      }
+    }
+
+    function copiarPix() {
+      if (!pixPayloadAtual) return;
+      navigator.clipboard.writeText(pixPayloadAtual);
+      const btnTxt = document.getElementById('btn-pix-txt');
+      btnTxt.innerText = 'Copiado com sucesso! ✅';
+      setTimeout(() => btnTxt.innerText = 'Copiar Código PIX Copia-e-Cola', 2500);
+    }
+
+    function abrirCarrinho() {
+      document.getElementById('modal-carrinho').classList.remove('hidden');
+      atualizarInterfaceCarrinho();
+    }
+
+    function fecharCarrinho() {
+      document.getElementById('modal-carrinho').classList.add('hidden');
+    }
+
+    function irParaSecao(id) {
+      const el = document.getElementById('sec-' + id);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    function finalizarPedidoWhatsApp() {
+      const nome = document.getElementById('cli-nome').value.trim();
+      const tel = document.getElementById('cli-tel').value.trim();
+      const end = document.getElementById('cli-end').value.trim();
+      const troco = document.getElementById('cli-troco').value.trim();
+
+      const itensKeys = Object.keys(carrinho);
+      if (itensKeys.length === 0) {
+        alert('Seu carrinho está vazio! Adicione algum produto antes de finalizar.');
+        return;
+      }
+
+      if (!nome) {
+        alert('Por favor, informe o seu nome para o pedido.');
+        document.getElementById('cli-nome').focus();
+        return;
+      }
+
+      if (modalidadeEntrega === 'delivery' && !end) {
+        alert('Por favor, informe o endereço de entrega completo.');
+        document.getElementById('cli-end').focus();
+        return;
+      }
+
+      let subtotal = 0;
+      let textoItens = '';
+      itensKeys.forEach(k => {
+        const item = carrinho[k];
+        const val = item.preco * item.qtd;
+        subtotal += val;
+        textoItens += `• ${item.qtd}x ${item.nome} - R$ ${val.toFixed(2).replace('.', ',')}\n`;
+      });
+
+      const taxa = modalidadeEntrega === 'delivery' ? 5.00 : 0.00;
+      const total = subtotal + taxa;
+
+      let msg = `🍔 *NOVO PEDIDO - MÔNICA LANCHES* 🍔\n`;
+      msg += `------------------------------------\n`;
+      msg += `👤 *Cliente:* ${nome}\n`;
+      msg += `📱 *Telefone:* ${tel || 'Não informado'}\n`;
+      msg += `📍 *Modalidade:* ${modalidadeEntrega === 'delivery' ? 'Entrega (Delivery)' : 'Retirada no Trailer'}\n`;
+      if (modalidadeEntrega === 'delivery') {
+        msg += `🏠 *Endereço:* ${end}\n`;
+      }
+      msg += `\n🛒 *Itens do Pedido:*\n${textoItens}\n`;
+      msg += `💰 *Subtotal:* R$ ${subtotal.toFixed(2).replace('.', ',')}\n`;
+      if (modalidadeEntrega === 'delivery') {
+        msg += `🛵 *Taxa de Entrega:* R$ ${taxa.toFixed(2).replace('.', ',')}\n`;
+      }
+      msg += `💳 *TOTAL GERAL:* R$ ${total.toFixed(2).replace('.', ',')}\n`;
+      msg += `------------------------------------\n`;
+      msg += `💵 *Forma de Pagamento:* ${formaPagamento}\n`;
+      if (formaPagamento === 'Dinheiro' && troco) {
+        msg += `🪙 *Troco:* ${troco}\n`;
+      }
+      if (formaPagamento === 'PIX') {
+        msg += `💠 *(Comprovante PIX será enviado em seguida)*\n`;
+      }
+
+      const encoded = encodeURIComponent(msg);
+      const urlWhats = `https://wa.me/55997119170?text=${encoded}`;
+      window.open(urlWhats, '_blank');
+    }
+
+    // Iniciar
+    window.onload = carregarCardapio;
+  </script>
+</body>
+</html>

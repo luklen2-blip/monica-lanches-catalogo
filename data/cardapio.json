@@ -1,0 +1,81 @@
+{
+  "loja": {
+    "nome": "Mônica Lanches",
+    "subtitulo": "Lanches, Salgados, Picolés & Sacolé Raiz",
+    "whatsapp": "55997119170",
+    "whatsapp_display": "(99) 9711-9170",
+    "chave_pix": "997119170",
+    "titular_pix": "Mônica Lanches",
+    "cidade_pix": "SAO PAULO",
+    "funcionamento": "Funcionamento Diário das 10h às 23h",
+    "taxa_entrega": 5.00,
+    "tempo_estimado": "30 a 50 min",
+    "pagamentos": ["PIX", "Dinheiro (com troco)", "Cartão na Entrega"]
+  },
+  "categorias": [
+    {
+      "id": "picoles",
+      "nome": "🍦 Picolés",
+      "destaque": "R$ 3,00 cada",
+      "itens": [
+        { "id": "p-morango", "nome": "Picolé de Morango", "descricao": "Sabor intenso da fruta, refrescante e artesanal", "preco": 3.00, "foto": "assets/picole_morango.jpg", "badge": "Mais Pedido" },
+        { "id": "p-chocolate", "nome": "Picolé de Chocolate", "descricao": "Cremoso de chocolate com cacau selecionado", "preco": 3.00, "foto": "assets/picole_chocolate.jpg", "badge": "Favorito" },
+        { "id": "p-coco", "nome": "Picolé de Coco", "descricao": "Feito com leite de coco natural e pedacinhos", "preco": 3.00, "foto": "assets/monica_picoles_menu.jpg" },
+        { "id": "p-uva", "nome": "Picolé de Uva", "descricao": "Puro sabor da uva, super refrescante", "preco": 3.00, "foto": "assets/monica_picoles_menu.jpg" },
+        { "id": "p-milho", "nome": "Picolé de Milho Verde", "descricao": "O clássico cremoso e caseiro de milho", "preco": 3.00, "foto": "assets/monica_picoles_menu.jpg" },
+        { "id": "p-flocos", "nome": "Picolé de Flocos", "descricao": "Base cremosa com lascas de chocolate", "preco": 3.00, "foto": "assets/monica_picoles_menu.jpg" },
+        { "id": "p-limao", "nome": "Picolé de Limão", "descricao": "Cítrico, refrescante e revigorante", "preco": 3.00, "foto": "assets/monica_picoles_menu.jpg" },
+        { "id": "p-leite-cond", "nome": "Picolé de Leite Condensado", "descricao": "Extremamente cremoso e doce na medida certa", "preco": 3.00, "foto": "assets/monica_picoles_menu.jpg" },
+        { "id": "p-maracuja", "nome": "Picolé de Maracujá", "descricao": "Sabor tropical com toque natural da fruta", "preco": 3.00, "foto": "assets/monica_picoles_menu.jpg" }
+      ]
+    },
+    {
+      "id": "sacole",
+      "nome": "🍧 Sacolé Raiz",
+      "destaque": "R$ 3,00 cada",
+      "itens": [
+        { "id": "s-morango", "nome": "Sacolé de Morango", "descricao": "Receita tradicional caseira, muito cremoso", "preco": 3.00, "foto": "assets/monica_sacole_raiz.jpg", "badge": "Campeão" },
+        { "id": "s-chocolate", "nome": "Sacolé de Chocolate", "descricao": "Chocolate encorpado e delicioso", "preco": 3.00, "foto": "assets/monica_sacole_raiz.jpg" },
+        { "id": "s-coco", "nome": "Sacolé de Coco", "descricao": "Coco ralado com leite e cremosidade máxima", "preco": 3.00, "foto": "assets/monica_sacole_raiz.jpg" },
+        { "id": "s-manga", "nome": "Sacolé de Manga", "descricao": "Feito com polpa fresca de manga madura", "preco": 3.00, "foto": "assets/monica_sacole_raiz.jpg" },
+        { "id": "s-abacate", "nome": "Sacolé de Abacate", "descricao": "Super aveludado e nutritivo", "preco": 3.00, "foto": "assets/monica_sacole_raiz.jpg" },
+        { "id": "s-amendoim", "nome": "Sacolé de Amendoim", "descricao": "Com amendoim torrado e moído da hora", "preco": 3.00, "foto": "assets/monica_sacole_raiz.jpg" }
+      ]
+    },
+    {
+      "id": "salgados",
+      "nome": "🥟 Salgados & Petiscos",
+      "destaque": "Fritos na hora",
+      "itens": [
+        { "id": "salg-coxinhas", "nome": "Bandeja de Mini Coxinhas", "descricao": "Porção com mini coxinhas douradas, casca crocante e recheio de frango desfiado com tempero especial", "preco": 8.00, "foto": "assets/coxinha_gourmet.jpg", "badge": "Top 1" },
+        { "id": "salg-cento", "nome": "Cento de Salgadinhos de Festa", "descricao": "100 salgadinhos sortidos fritos na hora: coxinhas, kibes crocantes e bolinhas de queijo derretido", "preco": 65.00, "foto": "assets/cento_salgados.jpg", "badge": "Festa" },
+        { "id": "salg-fritas", "nome": "Porção de Batata Frita", "descricao": "Batatas palito douradas, crocantes por fora e macias por dentro, salgadas na medida", "preco": 10.00, "foto": "assets/snacks_table.jpg" }
+      ]
+    },
+    {
+      "id": "lanches",
+      "nome": "🍔 Lanches & Burgers",
+      "destaque": "No capricho",
+      "itens": [
+        { "id": "lan-xburguer", "nome": "X-Burguer Especial Mônica", "descricao": "Pão macio selado, hambúrguer artesanal, queijo cheddar/prato duplo derretido e batata palha crocante", "preco": 14.00, "foto": "assets/snacks_table.jpg", "badge": "Mais Vendido" },
+        { "id": "lan-xtudo", "nome": "X-Tudo Completo", "descricao": "Hambúrguer, queijo derretido, presunto, batata palha, alface, tomate e maionese especial da casa", "preco": 16.00, "foto": "assets/snacks_table.jpg" }
+      ]
+    },
+    {
+      "id": "bebidas",
+      "nome": "🥤 Bebidas Geladas",
+      "destaque": "Estupidamente geladas",
+      "itens": [
+        { "id": "beb-coca2l", "nome": "Coca-Cola 2 Litros", "descricao": "Garrafa Pet 2L gelada", "preco": 14.00, "foto": "assets/monica_trailer_completo.jpg" },
+        { "id": "beb-guarana2l", "nome": "Guaraná Antarctica 2 Litros", "descricao": "Garrafa Pet 2L gelada", "preco": 12.00, "foto": "assets/monica_trailer_completo.jpg" },
+        { "id": "beb-cocazero15l", "nome": "Coca-Cola Zero 1,5 Litros", "descricao": "Garrafa Pet 1,5L gelada", "preco": 11.00, "foto": "assets/monica_trailer_completo.jpg" },
+        { "id": "beb-convencao2l", "nome": "Guaraná Convenção 2 Litros", "descricao": "Garrafa Pet 2L gelada", "preco": 8.00, "foto": "assets/monica_trailer_completo.jpg" },
+        { "id": "beb-imperio-latao", "nome": "Cerveja Império Latão 473ml", "descricao": "Latão 473ml trincando de gelada", "preco": 7.00, "foto": "assets/monica_trailer_completo.jpg" },
+        { "id": "beb-coca-lata", "nome": "Coca-Cola Lata 350ml", "descricao": "Lata 350ml gelada", "preco": 5.00, "foto": "assets/monica_trailer_completo.jpg" },
+        { "id": "beb-guarana-lata", "nome": "Guaraná Antarctica Lata 350ml", "descricao": "Lata 350ml gelada", "preco": 5.00, "foto": "assets/monica_trailer_completo.jpg" },
+        { "id": "beb-tonica-lata", "nome": "Água Tônica Lata 350ml", "descricao": "Lata 350ml gelada", "preco": 5.00, "foto": "assets/monica_trailer_completo.jpg" },
+        { "id": "beb-guaracamp", "nome": "Guaracamp Copo 285ml", "descricao": "Copo 285ml gelado com canudo", "preco": 3.00, "foto": "assets/monica_trailer_completo.jpg" }
+      ]
+    }
+  ]
+}
